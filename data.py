@@ -56,6 +56,7 @@ def get_test_data(args: Namespace) -> tuple[torch.Tensor, torch.Tensor]:
     test_data: torch.Tensor = torch.tensor(data[b'data'], dtype=torch.float32)
     test_data = test_data.reshape(test_data.size(0), 3, 32, 32)
     test_ids: torch.Tensor = torch.Tensor(data[b'ids'])
+    test_data /= 255
     transform: v2.Normalize = v2.Normalize([0.485, 0.456, 0.406], [0.229, 0.224, 0.225])
     test_data = transform(test_data)
     return test_data, test_ids

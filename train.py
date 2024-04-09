@@ -40,8 +40,7 @@ def train(args):
     elif args.optim == 'entropysgd':
         opt: EntropySGD = EntropySGD(
             params=resnet.parameters(),
-            lr=lr,
-            weight_decay=weight_decay
+            config=dict(lr=lr, weight_decay=weight_decay)
         )
     elif args.optim == 'sgd':
         opt: SGD = SGD(
@@ -75,7 +74,16 @@ def train(args):
             y_pred: torch.Tensor = resnet(x)
             fit: torch.Tensor = loss(y_pred, y)
             fit.backward()
-            opt.step()
+            if args.optim == "entropysgd":
+                def closure():
+                    opt.zero_grad()
+                    y_pred: torch.Tensor = resnet(x)
+                    fit: torch.Tensor = loss(y_pred, y)
+                    fit.backward()
+                    return fit
+                opt.step(closure)
+            else:
+                opt.step()
             train_loss += fit.item()
         train_loss /= len(train_dataloader)
         print(f'Train Loss: {train_loss}')
