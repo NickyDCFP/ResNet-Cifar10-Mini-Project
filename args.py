@@ -22,44 +22,20 @@ def parse_args() -> Namespace:
         default=128
     )
     parser.add_argument(
-        "--teacher-lr",
-        help="The learning rate for the teacher",
+        "--lr",
+        help="The learning rate for the model",
         type=float,
-        default=0.0001
+        default=0.001
     )
     parser.add_argument(
-        "--student-lr",
-        help="The learning rate for the student",
-        type=float,
-        default=0.005
-    )
-    parser.add_argument(
-        "--teacher-epochs",
-        help="The number of epochs to train the teacher",
+        "--epochs",
+        help="The number of epochs to train the model",
         type=int,
         default=350
     )
     parser.add_argument(
-        "--student-epochs",
-        help="The number of epochs to train the student",
-        type=int,
-        default=200
-    )
-    parser.add_argument(
-        "--student-hard-epochs",
-        help="The number of student epochs that will be done using hard targets",
-        type=int,
-        default=50
-    )
-    parser.add_argument(
-        "--teacher-weight-decay",
-        help="The L2 regularization parameter for the teacher",
-        type=float,
-        default=0.01
-    )
-    parser.add_argument(
-        "--student-weight-decay",
-        help="The L2 regularization parameter for the student",
+        "--weight-decay",
+        help="The L2 regularization parameter for the model",
         type=float,
         default=0.001
     )
@@ -72,13 +48,7 @@ def parse_args() -> Namespace:
     )
     parser.add_argument(
         "--pretrained",
-        help="The pretrained student model, if any, to test on the test data",
-        type=str,
-        default=None
-    )
-    parser.add_argument(
-        "--pretrained-teacher",
-        help="The pretrained teacher model to be used to train a new student",
+        help="The pretrained model, if any, to test on the test data",
         type=str,
         default=None
     )
