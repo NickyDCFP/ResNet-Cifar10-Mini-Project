@@ -103,13 +103,13 @@ def train_student(
     val_dataloader: DataLoader,
     teacher: ResNet
 ) -> ResNet:
+    student = ResNet(BasicBlock, [2, 1, 1, 1])
     opt: Optimizer = get_optim(
         args.optim,
         student.parameters(),
         args.student_lr,
         args.student_weight_decay
     )
-    student = ResNet(BasicBlock, [2, 1, 1, 1])
     n_params = sum(p.numel() for p in student.parameters())
     assert n_params <= MAX_PARAMS, (
         f"Expected <= {MAX_PARAMS} parameters " \
