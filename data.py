@@ -7,6 +7,15 @@ import os
 from argparse import Namespace
 
 def get_dataset(args: Namespace) -> tuple[DataLoader, DataLoader]:
+    """
+    Retrieves CIFAR10 with a set of transforms applied to it.
+
+    Parameters:
+        args:       arguments from the command line
+
+    Returns
+        The desired dataset, loaded into separate train and test DataLoaders.
+    """
     train_transforms: v2.Compose = v2.Compose(
         [
             v2.RandomResizedCrop(size=32, antialias=True),
@@ -34,9 +43,8 @@ def get_dataset(args: Namespace) -> tuple[DataLoader, DataLoader]:
         args.data_dir,
         train=False,
         download=True,
-        transform=val_transforms
+        transform=val_transforms,
     )
-
     train_dataloader: DataLoader = DataLoader(
         train_set,
         batch_size=args.batch_size,
@@ -50,6 +58,15 @@ def get_dataset(args: Namespace) -> tuple[DataLoader, DataLoader]:
     return train_dataloader, val_dataloader
 
 def get_test_data(args: Namespace) -> tuple[torch.Tensor, torch.Tensor]:
+    """
+    Loads in the test dataset for Kaggle leaderboard placement.
+
+    Parameters:
+        args:   arguments from the command line
+    
+    Returns:
+        The test data images and their respective IDs.
+    """
     path: str = os.path.join(args.data_dir, args.test_filename)
     with open(path, 'rb') as fo:
         data: dict = pickle.load(fo, encoding='bytes')
