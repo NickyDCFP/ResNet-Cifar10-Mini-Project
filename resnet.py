@@ -1,6 +1,6 @@
-'''ResNet in PyTorch.
-
-For Pre-activation ResNet, see 'preact_resnet.py'.
+'''
+From https://github.com/kuangliu/pytorch-cifar
+ResNet in PyTorch.
 
 Reference:
 [1] Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun

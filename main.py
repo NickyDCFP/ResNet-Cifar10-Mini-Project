@@ -1,7 +1,7 @@
 from argparse import Namespace
 from resnet import ResNet, BasicBlock
 import os
-from torch import torch
+import torch
 from collections import OrderedDict
 
 
@@ -9,7 +9,7 @@ from args import parse_args
 from train import train
 from test import test
 
-if __name__ == '__main__':
+def main():
     args: Namespace = parse_args()
     if args.pretrained is None:
         resnet: ResNet = train(args)
@@ -24,3 +24,6 @@ if __name__ == '__main__':
 
     if args.test_filename is not None:
         test(args, resnet)
+    
+if __name__ == '__main__':
+    main()

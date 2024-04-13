@@ -7,6 +7,13 @@ from tqdm import tqdm
 from data import get_test_data
 
 def test(args: Namespace, resnet: ResNet) -> None:
+    """
+    Test the resnet on the test set from Kaggle and save the predictions.
+
+    Parameters:
+        args:       Arguments from the command line
+        resnet:     The network to be tested
+    """
     test_data: torch.Tensor; ids: torch.Tensor
     test_data, ids = get_test_data(args)
     

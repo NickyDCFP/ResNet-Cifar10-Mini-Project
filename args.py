@@ -1,6 +1,12 @@
 from argparse import ArgumentParser, Namespace
 
 def parse_args() -> Namespace:
+    """
+    Parses arguments from the command line.
+
+    Returns:
+        A Namespace with the parsed arguments.
+    """
     parser = ArgumentParser("ResNet training on CIFAR10 dataset")
 
     parser.add_argument(

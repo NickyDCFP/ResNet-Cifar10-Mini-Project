@@ -1,1 +1,1 @@
-MAX_PARAMS = 5000000
+MAX_PARAMS = 5000000 # The maximum allowable parameters for the model
