@@ -4,10 +4,12 @@ Mini-Project for CS-GY 6953 Deep Learning with Professor Chinmay Hegde. Uses Res
 
 All of the requirements for the environment are listed in `environment.yaml`. 
 
-To run inference on the test data using our pretrained model, be sure you have `cifar_test_nolabels.pkl` in `./dataset/`. If you want to run inference on a different `.pkl` file, you can configure that with `--test-filename`, and if you want to change the directory of the `.pkl` file, you can do so with `--data-dir`. Next, run the following command to generate an `out_.csv` with the predictions:
+To run inference on the test data using our pretrained weights, be sure you have `cifar_test_nolabels.pkl` in `./dataset/`. If you want to run inference on a different `.pkl` file, you can configure that with `--test-filename`, and if you want to change the directory of the `.pkl` file, you can do so with `--data-dir`. Next, run the following command to generate an `out_.csv` with the predictions:
 ```
 python main.py --pretrained resnet.pt
 ```
+This command also assumes that the model is in `./trained_models/`. This directory can be changed with `--save-dir`.
+
 
 To train and validate a model (and run that model on the test data), be sure you satisfy the above requirements and run the following command:
 ```
